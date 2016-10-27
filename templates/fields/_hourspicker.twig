@@ -1,0 +1,57 @@
+{#=== Options ============================================================================#}
+
+{% set attr_opt = {
+    class:        field.class|default(''),
+    id:           'storehours-' ~ key,
+    name:         name,
+    required:     field.required|default(false),
+    readonly:     field.readonly|default(false)
+}%}
+
+{% set weekdays = {
+    'mon': 'Monday',
+    'tue': 'Tuesday',
+    'wed': 'Wednesday',
+    'thu': 'Thursday',
+    'fri': 'Friday',
+    'sat': 'Saturday',
+    'sun': 'Sunday'
+} %}
+
+{% set default_list = {
+  'mon': '',
+  'tue': '',
+  'wed': '',
+  'thu': '',
+  'fri': '',
+  'sat': '',
+  'sun': ''
+} %}
+
+{% set list = context.content.get(contentkey)|default(default_list) %}
+{% set current_list = list|json_decode %}
+
+{% macro display_hours_field(name, key, value, label, type, size) %}
+    <div class="row">
+      <label class="main col-xs-3 control-label" for="{{ key }}_{{ name }}">{{ label }}</label>
+      <div class="col-xs-9">
+          <input class="form-control" id="{{ key }}_{{ name }}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
+      </div>
+    </div>
+{% endmacro %}
+
+{# Make the macro available for use #}
+{% from _self import display_hours_field %}
+
+{#=== FIELDSET ============================================================================#}
+
+<fieldset class="form-group hourspicker js-storehours" data-key="{{ key }}">
+    <legend class="sr-only">{{ field.label|default(key) }}</legend>
+    <label class="main control-label col-xs-12 control-label">{{ field.label|default(key)|capitalize }}: </label>
+    <div class="col-xs-12">
+        {% for day, value in current_list|default(default_list) %}
+            {{ display_hours_field(day, key, value, weekdays[day]) }}
+        {% endfor %}
+        <textarea class="form-control hide" {{ macro.attr(attr_opt) }}>{{ list }}</textarea>
+    </div>
+</fieldset>

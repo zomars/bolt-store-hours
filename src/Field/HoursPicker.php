@@ -2,10 +2,11 @@
 
 namespace Bolt\Extension\Zomars\BoltStoreHours\Field;
 
-use Bolt\Storage\Field\FieldInterface;
+use Bolt\Field\FieldInterface;
 
-class StoreHoursField implements FieldInterface
+class HoursPicker implements FieldInterface
 {
+
     public function getName()
     {
         return 'storehours';
@@ -13,7 +14,7 @@ class StoreHoursField implements FieldInterface
 
     public function getTemplate()
     {
-        return '_storehours.twig';
+        return 'fields/_hourspicker.twig';
     }
 
     public function getStorageType()
@@ -25,4 +26,5 @@ class StoreHoursField implements FieldInterface
     {
         return ['default' => ''];
     }
+
 }

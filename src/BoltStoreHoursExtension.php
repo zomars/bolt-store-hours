@@ -1,20 +1,18 @@
 <?php
 
-namespace Bolt\Extensions\Bolt\StoreHours;
+namespace Bolt\Extension\Zomars\BoltStoreHours;
 
-use Bolt\Asset\File\JavaScript;
-use Bolt\Asset\File\Stylesheet;
-use Bolt\Controller\Zone;
-use Bolt\Extension\SimpleExtension;
-use Bolt\Extensions\Bolt\StoreHours\Field\StoreHoursField;
 use StoreHours\StoreHours;
+use Bolt\Extension\SimpleExtension;
+use Bolt\Asset\File\JavaScript;
+use Bolt\Controller\Zone;
 
 /**
- * An extension to add business hours as a field type within Bolt
+ * BoltStoreHours extension class.
  *
  * @author zomars <zomars@me.com>
  */
-class StoreHoursExtension extends SimpleExtension
+class BoltStoreHoursExtension extends SimpleExtension
 {
     /**
      * {@inheritdoc}
@@ -22,7 +20,7 @@ class StoreHoursExtension extends SimpleExtension
     protected function registerFields()
     {
         return [
-            new StoreHoursField(),
+            new Field\HoursPicker(),
         ];
     }
 
@@ -32,7 +30,7 @@ class StoreHoursExtension extends SimpleExtension
     protected function registerTwigPaths()
     {
         return [
-            'templates',
+            'templates'
         ];
     }
 
@@ -42,8 +40,8 @@ class StoreHoursExtension extends SimpleExtension
     protected function registerAssets()
     {
         return [
-            // Web assets that will be loaded in the backend
-            (new JavaScript('storehours.js'))->setZone(Zone::BACKEND),
+            (new JavaScript('js/storehours.js'))->setZone(Zone::BACKEND),
+            (new JavaScript('js/storeinit.js'))->setZone(Zone::BACKEND),
         ];
     }
 
@@ -105,5 +103,6 @@ class StoreHoursExtension extends SimpleExtension
         $store_hours = new StoreHours($formatted_array, $exceptions, $template);
         return $store_hours->hours_today();
     }
-
 }
+
+namespace Bolt\Extensions\Bolt\StoreHours;
