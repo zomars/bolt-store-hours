@@ -2,13 +2,10 @@
 
 namespace Bolt\Extension\Zomars\BoltStoreHours;
 
+use StoreHours\StoreHours;
 use Bolt\Extension\SimpleExtension;
 use Bolt\Asset\File\JavaScript;
-use Bolt\Asset\File\Stylesheet;
 use Bolt\Controller\Zone;
-use Bolt\Extension\Zomars\BoltStoreHours\Field\StoreHoursField;
-use StoreHours\StoreHours;
-
 
 /**
  * BoltStoreHours extension class.
@@ -23,7 +20,7 @@ class BoltStoreHoursExtension extends SimpleExtension
     protected function registerFields()
     {
         return [
-            new StoreHoursField(),
+            new Field\HoursPicker(),
         ];
     }
 
@@ -33,7 +30,7 @@ class BoltStoreHoursExtension extends SimpleExtension
     protected function registerTwigPaths()
     {
         return [
-            'templates',
+            'templates'
         ];
     }
 
@@ -43,8 +40,8 @@ class BoltStoreHoursExtension extends SimpleExtension
     protected function registerAssets()
     {
         return [
-            // Web assets that will be loaded in the backend
-            (new JavaScript('storehours.js'))->setZone(Zone::BACKEND),
+            (new JavaScript('js/storehours.js'))->setZone(Zone::BACKEND),
+            (new JavaScript('js/storeinit.js'))->setZone(Zone::BACKEND),
         ];
     }
 
