@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolt\Extensions\Bolt\StoreHours\Field;
+namespace Bolt\Extension\Zomars\BoltStoreHours\Field;
 
 use Bolt\Storage\Field\FieldInterface;
 

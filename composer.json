@@ -2,6 +2,11 @@
     "name": "zomars/bolt-store-hours",
     "description": "An extension to add business hours as a field type within Bolt",
     "type": "bolt-extension",
+    "keywords": [
+        "backend",
+        "field",
+        "storehours"
+    ],
     "require": {
         "bolt/bolt": "^3.0"
     },
@@ -15,30 +20,22 @@
             "email": "zomars@me.com"
         }
     ],
-    "keywords": [
-        "backend",
-        "field",
-        "storehours"
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Bolt\\Extensions\\Bolt\\StoreHours\\": "src",
+            "Bolt\\Extension\\Zomars\\BoltStoreHours\\": "src",
             "StoreHours\\": "lib/StoreHours/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bolt\\Extension\\Bolt\\StoreHours\\Tests\\": "tests",
+            "Bolt\\Extension\\Zomars\\BoltStoreHours\\Tests\\": "tests",
             "Bolt\\Tests\\": "vendor/bolt/bolt/tests/phpunit/unit/"
         }
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extensions\\Bolt\\StoreHours\\StoreHoursExtension",
-        "bolt-screenshots": [
-            "screenshot.png"
-        ]
+        "bolt-class": "Bolt\\Extension\\Zomars\\BoltStoreHours\\BoltStoreHoursExtension"
     }
 }

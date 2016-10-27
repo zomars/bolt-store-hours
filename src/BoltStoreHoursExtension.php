@@ -1,20 +1,21 @@
 <?php
 
-namespace Bolt\Extensions\Bolt\StoreHours;
+namespace Bolt\Extension\Zomars\BoltStoreHours;
 
+use Bolt\Extension\SimpleExtension;
 use Bolt\Asset\File\JavaScript;
 use Bolt\Asset\File\Stylesheet;
 use Bolt\Controller\Zone;
-use Bolt\Extension\SimpleExtension;
-use Bolt\Extensions\Bolt\StoreHours\Field\StoreHoursField;
+use Bolt\Extension\Zomars\BoltStoreHours\Field\StoreHoursField;
 use StoreHours\StoreHours;
 
+
 /**
- * An extension to add business hours as a field type within Bolt
+ * BoltStoreHours extension class.
  *
  * @author zomars <zomars@me.com>
  */
-class StoreHoursExtension extends SimpleExtension
+class BoltStoreHoursExtension extends SimpleExtension
 {
     /**
      * {@inheritdoc}
@@ -105,5 +106,6 @@ class StoreHoursExtension extends SimpleExtension
         $store_hours = new StoreHours($formatted_array, $exceptions, $template);
         return $store_hours->hours_today();
     }
-
 }
+
+namespace Bolt\Extensions\Bolt\StoreHours;
