@@ -30,7 +30,7 @@ class BoltStoreHoursExtension extends SimpleExtension
     protected function registerTwigPaths()
     {
         return [
-            'templates'
+            'templates',
         ];
     }
 
@@ -39,9 +39,18 @@ class BoltStoreHoursExtension extends SimpleExtension
      */
     protected function registerAssets()
     {
+        $serializeObjectJs = new JavaScript();
+        $serializeObjectJs->setFileName('jquery-serialize-object.js')
+            ->setZone(Zone::BACKEND)
+        ;
+        $storehoursJs = new JavaScript();
+        $storehoursJs->setFileName('storehours.js')
+            ->setZone(Zone::BACKEND)
+            ->setLate(true)
+        ;
         return [
-            (new JavaScript('js/storehours.js'))->setZone(Zone::BACKEND),
-            (new JavaScript('js/storeinit.js'))->setZone(Zone::BACKEND),
+            $serializeObjectJs,
+            $storehoursJs
         ];
     }
 
